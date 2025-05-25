@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: demo-coolbox
+    env: docker
+    plan: starter
