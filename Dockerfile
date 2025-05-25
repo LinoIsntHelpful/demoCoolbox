@@ -1,5 +1,5 @@
 # Stage 1: build con Maven
-FROM maven:3.8.7-openjdk-17 AS build
+FROM maven:3.8.7-jdk-17 AS build
 WORKDIR /app
 COPY . .
 # Assicuriamoci che il wrapper sia eseguibile
