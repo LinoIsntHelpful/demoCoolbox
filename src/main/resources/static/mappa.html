@@ -231,6 +231,24 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+
+    const fakeDB = {
+        fisciano: [
+            { id:1, name:"Penna", quantity:3 },
+            { id:2, name:"Quaderno", quantity:5 }
+        ],
+        pagani: [
+            { id:3, name:"Matita", quantity:2 }
+        ]
+    };
+
+    function loadObjects(locationId) {
+        return Promise.resolve(fakeDB[locationId] || []).then(data =>
+            openPanel(data, locationId)
+        );
+    }
+
+
     const params = new URLSearchParams(window.location.search);
     const selectedUser = params.get("user");
     const startLocation = params.get("start");
@@ -277,11 +295,6 @@
         loadObjects(currentLocationId);
     }
 
-    function loadObjects(locationId) {
-        fetch(`http://localhost:8080/api/objects/${locationId}`)
-            .then(res => res.json())
-            .then(data => openPanel(data, locationId));
-    }
 
     function addObject() {
         const name = document.getElementById("new-object-name").value.trim();
