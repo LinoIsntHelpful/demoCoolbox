@@ -1,9 +1,11 @@
 # Stage 1: build con Maven e Java 21
-FROM maven:3.9.4-jdk-21-slim AS build
+FROM maven:3.9.4-openjdk-21 AS build
 WORKDIR /app
 COPY . .
-# Compiliamo il jar senza test usando Maven installato nell'immagine
-RUN mvn clean package -DskipTests
+# Impostiamo il wrapper Maven eseguibile
+RUN chmod +x mvnw
+# Compiliamo il jar senza test
+RUN ./mvnw clean package -DskipTests
 
 # Stage 2: runtime con JRE Java 21
 FROM openjdk:21-jdk-slim
