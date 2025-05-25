@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="assets/favicon-removebg-preview.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coolbox - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #2e2e2e, #1b1b1b);
+            color: #ccc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            padding: 20px 40px;
+            background: #262626cc;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #bbb; /* grigio chiaro */
+            text-shadow: 0 0 8px #555555aa;
+        }
+        header p {
+            margin-top: 8px;
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: #999;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        #city-select {
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(135deg, #444, #333);
+            color: #ddd;
+            cursor: pointer;
+            box-shadow: 0 0 10px #222222bb;
+            transition: box-shadow 0.3s ease;
+            max-width: 300px;
+            width: 100%;
+        }
+        #city-select:hover, #city-select:focus {
+            box-shadow: 0 0 20px #555555cc;
+            outline: none;
+        }
+        button#go-btn {
+            margin-top: 30px;
+            padding: 12px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #555, #444);
+            border: none;
+            border-radius: 30px;
+            color: #eee;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 15px #444444cc;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        button#go-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #666666ff;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            background: #222222cc;
+            box-shadow: inset 0 1px 3px rgba(255,255,255,0.05);
+        }
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        #city-select {
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            border: none;
+            color: #ddd;
+            cursor: pointer;
+            box-shadow: 0 0 10px #222222bb;
+            transition: box-shadow 0.3s ease;
+            max-width: 300px;
+            width: 100%;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23ddd" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* freccia personalizzata */
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+
+        #city-select option {
+            background-color: #333333;
+            color: #ddd;
+        }
+
+        #city-select:focus {
+            box-shadow: 0 0 20px #555555cc;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Coolbox, dove anche un rifiuto diventa un tesoro</h1>
+    <p>Seleziona la città e scopri tutti gli oggetti disponibili</p>
+</header>
+
+<main>
+    <label for="city-select" style="font-size:1.1rem;">Scegli una città:</label>
+    <select id="city-select" aria-label="Seleziona città">
+        <option value="fisciano">Fisciano</option>
+        <option value="pagani">Pagani</option>
+    </select>
+    <button id="go-btn" aria-label="Vai alla mappa">Vai alla mappa</button>
+</main>
+
+<footer>
+    &copy; 2025 - Vincenzo Pentangelo
+</footer>
+
+<script>
+    document.getElementById('go-btn').addEventListener('click', () => {
+        const city = document.getElementById('city-select').value;
+        window.location.href = `mappa.html?start=${city}`;
+    });
+</script>
+
+</body>
+</html>
