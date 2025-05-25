@@ -1,13 +1,15 @@
-# Stage 1: build con Maven
-FROM maven:3.8.3-openjdk-17 AS build
+# Stage 1: build con Maven e Java 21
+FROM maven:3.9.4-jdk-21-slim AS build
 WORKDIR /app
 COPY . .
-RUN chmod +x mvnw
-RUN ./mvnw clean package -DskipTests
+# Compiliamo il jar senza test usando Maven installato nell'immagine
+RUN mvn clean package -DskipTests
 
-# Stage 2: runtime con JRE leggero
-FROM openjdk:17-jdk-slim
+# Stage 2: runtime con JRE Java 21
+FROM openjdk:21-jdk-slim
 WORKDIR /app
+# Copiamo il jar appena creato
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
+# Comando di avvio
 ENTRYPOINT ["java", "-jar", "app.jar"]
